@@ -95,7 +95,7 @@ install:
 build:
 	@+make prebuildclean
 	@+make testsetup
-	@+python setup.py sdist bdist_wheel
+	@+python setup.py sdist bdist_wheel --nocython
 	# @+python setup.py bdist_wininst  # comment this out if you are not on Windows
     pymake testsetuppost  # @+make does not work here, dunno why
 
