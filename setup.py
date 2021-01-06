@@ -31,10 +31,10 @@ try:
     # If Cython is installed, transpile the optimized Cython module to C and compile as a .pyd to be distributed
     from Cython.Build import cythonize
     print("Cython is installed, building creedsolo module")
-    extensions = [
+    extensions = cythonize([
                 Extension('unireedsolomon.cff', [os.path.join('unireedsolomon', 'cff.pyx')]),
                 Extension('unireedsolomon.cpolynomial', [os.path.join('unireedsolomon', 'cpolynomial.pyx')]),
-             ]
+             ])
 except ImportError:
     # Else Cython is not installed (or user explicitly wanted to skip)
     if '--native-compile' in sys.argv:
@@ -53,7 +53,7 @@ except ImportError:
 
 setup(
     name = "unireedsolomon",
-    version = "1.0.4",
+    version = "1.0.5",
     description = "Universal errors-and-erasures Reed Solomon codec (error correcting code) in pure Python with extensive documentation",
     author = "Andrew Brown, Stephen Larroque",
     author_email = "lrq3000@gmail.com",
