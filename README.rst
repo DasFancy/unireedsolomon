@@ -7,7 +7,7 @@ UniReedSolomon
 
 UniReedSolomon is a pure-Python universal Reed-Solomon error correction codec with fully documented code and mathematical nomenclatura, compatible with Python 2.7 up to 3.8 and also PyPy 2 and 3.
 
-If you are just starting with Reed-Solomon error correction codes, please see the * `Wikiversity tutorial<https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders>`_.
+If you are just starting with Reed-Solomon error correction codes, please see the `Wikiversity tutorial <https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders>`_.
 
 ------------------------------------
 
