@@ -313,6 +313,11 @@ implementation provides a significantly higher speedup than the Cython implement
 The Cython implementations are still provided for the interested reader, but the casual user is
 not advised to use them. If you want to encode and decode fast, use PyPy.
 
+Recommended reading
+-------------------
+
+* "Algebraic codes for data transmission", Blahut, Richard E., 2003, Cambridge university press. Readable online here on `Google Books <https://books.google.fr/books?id=eQs2i-R9-oYC&lpg=PR11&ots=atCPQJm3OJ&dq=%22Algebraic%20codes%20for%20data%20transmission%22%2C%20Blahut%2C%20Richard%20E.%2C%202003%2C%20Cambridge%20university%20press.&lr&hl=fr&pg=PA193#v=onepage&q=%22Algebraic%20codes%20for%20data%20transmission%22,%20Blahut,%20Richard%20E.,%202003,%20Cambridge%20university%20press.&f=false>`_. This book was pivotal in helping to understand the intricacies of the universal Berlekamp-Massey algorithm (see figures 7.5 and 7.10).
+
 Authors and licence
 -------------------
 Written from scratch by Andrew Brown <brownan@gmail.com> <brownan@cs.duke.edu>
