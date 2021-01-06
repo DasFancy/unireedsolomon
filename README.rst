@@ -5,9 +5,7 @@ UniReedSolomon
 
 |Build-Status| |Coverage|
 
-UniReedSolomon is a pure-Python universal Reed-Solomon error correction codec with fully documented code and mathematical nomenclatura, compatible with Python 2.7 up to 3.7 and also PyPy 2 and 3.
-
-Compatible also with Python 3.8 but requires installing Cython even if not used (this will be fixed in the future).
+UniReedSolomon is a pure-Python universal Reed-Solomon error correction codec with fully documented code and mathematical nomenclatura, compatible with Python 2.7 up to 3.8 and also PyPy 2 and 3.
 
 ------------------------------------
 
@@ -28,8 +26,6 @@ Installation
     When installing from source using ``python setup.py install``, the setup.py will try to build the Cython optimized module ``cff.pyx`` and ``cpolynomial.pyx`` if both Cython and a C compiler (eg, gcc) are installed, which provides ~4x speed boost during encoding. Although it should be done by default if Cython is installed, the compilation of Cython modules can be forced with ``python setup.py build_ext --inplace``. You can override this behavior by typing: ``python setup.py install --nocython`` to force the install only the pure python module without building the Cython modules.
 
     Pre-transpiled ``cff.c`` and ``cpolynomial.c`` files are also available, and can be compiled with a C compiler without Cython by typing: ``python setup.py install --compile``.
-
-    The package on ``pip`` includes pre-compiled ``cff.pyd`` and ``cpolynomial.pyd`` modules for Windows 10 x64.
 
 Quickstart
 ----------
