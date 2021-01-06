@@ -20,26 +20,40 @@ except ImportError:
     from distutils.core import setup, find_packages
     from distutils.extension import Extension
 
-import os
+import os, sys
 
 try:
+    # Test if Cython is installed
+    if '--nocython' in sys.argv:
+        # Skip if user does not want to use Cython
+        sys.argv.remove('--nocython')
+        raise(ImportError('Skip Cython'))
+    # If Cython is installed, transpile the optimized Cython module to C and compile as a .pyd to be distributed
     from Cython.Build import cythonize
-    USE_CYTHON = True
+    print("Cython is installed, building creedsolo module")
+    extensions = [
+                Extension('unireedsolomon.cff', [os.path.join('unireedsolomon', 'cff.pyx')]),
+                Extension('unireedsolomon.cpolynomial', [os.path.join('unireedsolomon', 'cpolynomial.pyx')]),
+             ]
 except ImportError:
-    USE_CYTHON = False
+    # Else Cython is not installed (or user explicitly wanted to skip)
+    if '--native-compile' in sys.argv:
+        # Compile pyd from pre-transpiled creedsolo.c
+        print("Cython is not installed, but the creedsolo module will be built from the pre-transpiled creedsolo.c file using the locally installed C compiler")
+        sys.argv.remove('--native-compile')
+        extensions = [
+                Extension('unireedsolomon.cff', [os.path.join('unireedsolomon', 'cff.c')]),
+                Extension('unireedsolomon.cpolynomial', [os.path.join('unireedsolomon', 'cpolynomial.c')]),
+             ]
+    else:
+        # Else run in pure python mode (no compilation)
+        print("Cython is not installed or is explicitly skipped using --nocython, no creedsolo module will be built")
+        extensions = None
 
-ext = '.pyx' if USE_CYTHON else '.c'
-
-extensions = [
-                        Extension('unireedsolomon.cff', [os.path.join('unireedsolomon', 'cff'+ext)]),
-                        Extension('unireedsolomon.cpolynomial', [os.path.join('unireedsolomon', 'cpolynomial'+ext)]),
-                    ]
-
-if USE_CYTHON: extensions = cythonize(extensions)
 
 setup(
     name = "unireedsolomon",
-    version = "1.0.2",
+    version = "1.0.3",
     description = "Universal errors-and-erasures Reed Solomon codec (error correcting code) in pure Python with extensive documentation",
     author = "Andrew Brown, Stephen Larroque",
     author_email = "lrq3000@gmail.com",
@@ -63,6 +77,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Programming Language :: Cython",
         "Topic :: Communications",
@@ -71,7 +86,6 @@ setup(
         "Topic :: System :: Recovery Tools",
     ],
     keywords = 'error correction erasure reed solomon repair file network packet',
-
     ext_modules = extensions,
     test_suite='nose.collector',
     tests_require=['nose'],
