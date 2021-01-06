@@ -53,7 +53,7 @@ except ImportError:
 
 setup(
     name = "unireedsolomon",
-    version = "1.0.3",
+    version = "1.0.4",
     description = "Universal errors-and-erasures Reed Solomon codec (error correcting code) in pure Python with extensive documentation",
     author = "Andrew Brown, Stephen Larroque",
     author_email = "lrq3000@gmail.com",
