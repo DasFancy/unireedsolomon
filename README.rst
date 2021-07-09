@@ -278,6 +278,15 @@ field GF(2^p)
     inverse()
         Multiplicative inverse in GF(2^p)
 
+Edge cases
+-------------
+
+Although sanity checks are implemented whenever possible and when they are not too much resource consuming, there are a few cases where messages will not be decoded correctly without raising an exception:
+
+* If an incorrect erasure location is provided, the decoding algorithm will just trust the provided locations and create a syndrome that will be wrong, resulting in an incorrect decoded message. In case reliability is critical, always use the check() method after decoding to check the decoding did not go wrong.
+
+* Reed-Solomon algorithm is limited by the Singleton Bound, which limits not only its capacity to correct errors and erasures relatively to the number of error correction symbols, but also its ability to check if the message can be decoded or not. Indeed, if the number of errors and erasures are greater than the Singleton Bound, the decoder has no way to mathematically know for sure whether there is an error at all, it may very well be a valid message (although not the message you expect, but mathematically valid nevertheless). Hence, when the message is tampered beyond the Singleton Bound, the decoder may raise an exception, but it may also return a mathematically valid but still tampered message. Using the check() method cannot fix that either. To work around this issue, a solution is to use parity or hashing functions in parallel to the Reed-Solomon codec: use the Reed-Solomon codec to repair messages, use the parity or hashing function to check if there is any error. Due to how parity and hashing functions work, they are much less likely to produce a false negative than the Reed-Solomon algorithm. This is a general rule: error correction codes are efficient at correcting messages but not at detecting errors, hashing and parity functions are the adequate tool for this purpose.
+
 Example implementations
 -----------------------
 
