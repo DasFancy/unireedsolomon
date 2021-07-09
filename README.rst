@@ -9,7 +9,7 @@ UniReedSolomon is a pure-Python universal Reed-Solomon error correction codec wi
 
 If you are just starting with Reed-Solomon error correction codes, please see the `Wikiversity tutorial <https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders>`_.
 
-Please also check out the more mature `Reedsolo <https://github.com/tomerfiliba/reedsolomon>`_ module, a sibling project maintained by one of the co-authors of this project.
+Please also check out the more mature and faster `Reedsolo <https://github.com/tomerfiliba/reedsolomon>`_ module, a sibling project using a functional oriented approach instead of object oriented, and maintained by one of the co-authors of this project.
 
 ------------------------------------
 
